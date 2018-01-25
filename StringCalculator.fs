@@ -1,5 +1,5 @@
 open System
 let Add (inputString: string) =
-    inputString.Split([|","|], StringSplitOptions.RemoveEmptyEntries)
+    inputString.Split([|",";"\n"|], StringSplitOptions.RemoveEmptyEntries)
     |> Seq.map int
     |> Seq.sum
