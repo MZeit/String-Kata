@@ -5,7 +5,7 @@ let Add (inputString: string) =
     |> Seq.map int
     |> Seq.sum
 
-// 4- 
+// 7 
 open System.Text.RegularExpressions
 open System
 
@@ -22,6 +22,10 @@ let checkNegative (seqWithNumbers:seq<int>) =
 
 let getStringWithNumbers (wholeString: string) = (wholeString.Split '\n').[1]
 
+let findDelimiter (wholeString: string) = 
+    let endOfDelimiter = wholeString.IndexOf("]")-1
+    [|wholeString.[3..endOfDelimiter]|]
+    
 let splitAndSum (del: string []) (numbersToSum: string) = 
     try
         numbersToSum.Split(del, StringSplitOptions.RemoveEmptyEntries) 
@@ -37,5 +41,5 @@ let splitAndSum (del: string []) (numbersToSum: string) =
 
 let Add stringWithDelimiteter = 
     match stringWithDelimiteter with 
-    | x when Regex("//.\n.*").Match(x).Success -> (splitAndSum [|stringWithDelimiteter.[2..2]|] (getStringWithNumbers x))
+    | x when Regex("//.*\n.*").Match(x).Success -> (splitAndSum (findDelimiter x) (getStringWithNumbers x))
     | y when Regex("-?[0-9]*.*").Match(y).Success -> (splitAndSum [|",";"\n"|] y)
