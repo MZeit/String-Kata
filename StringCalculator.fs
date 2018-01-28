@@ -28,6 +28,7 @@ let splitAndSum (del: string []) (numbersToSum: string) =
         |> Seq.ofArray 
         |> Seq.map int 
         |> checkNegative
+        |> Seq.where (fun b -> (b <= 1000 ))
         |> Seq.sum
      with
         | :? System.OverflowException as ex ->  printfn "The number entered is too big or too small.";0
