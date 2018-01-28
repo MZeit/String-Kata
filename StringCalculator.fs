@@ -20,7 +20,7 @@ let checkNegative (seqWithNumbers:seq<int>) =
       raise (NegativeNumberException negatives)
       Seq.empty
 
-let getStringWithNumbers (wholeString: string) = wholeString.Split([|'\n'|], StringSplitOptions.RemoveEmptyEntries).[1]
+let getStringWithNumbers (wholeString: string) = (wholeString.Split '\n').[1]
 
 let splitAndSum (del: string []) (numbersToSum: string) = 
     try
